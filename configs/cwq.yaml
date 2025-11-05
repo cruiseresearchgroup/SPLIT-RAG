@@ -1,0 +1,52 @@
+seed: 42
+paths:
+  kg_tsv: data/processed/kg.tsv
+  ent_json: data/processed/entities.json
+  rel_json: data/processed/relations.json
+  train_q: data/processed/cwq_train.jsonl
+  dev_q:   data/processed/cwq_dev.jsonl
+  test_q:  data/processed/cwq_test.jsonl
+  index_dir: data/processed/index/cwq
+  registry_json: data/processed/registry/cwq.json
+  runs_dir: data/processed/runs/cwq
+
+indexer:
+  topk_per_seed: 50
+  max_paths_per_question: 200
+  lambda_size: 0.25
+  theta_merge: 1e-4
+  eta_max_nodes: 120000
+  tau_min_nodes: 400
+
+matching:
+  N_max: 48
+  theta_coh: 0.35
+
+planner:
+  similarity:
+    alpha: 0.7
+    beta: 0.3
+    k_sim: 15
+    theta_direct: 0.78
+  select:
+    B: 4
+    prefer_sim_transfer: true
+  path_seed:
+    theta_match: 0.5
+    max_atomic: 192
+
+subgraph_agent:
+  theta_match: 0.5
+  topk_per_seed: 8
+  evidence_cap_tokens: 3200
+  max_workers: 8
+
+head:
+  max_input_tokens: 3200
+  max_new_tokens: 256
+  temperature: 0.3
+  top_p: 0.95
+  stop: ["\n\n"]
+
+eval:
+  normalize_answer: true
