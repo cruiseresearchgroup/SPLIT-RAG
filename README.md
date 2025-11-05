@@ -19,6 +19,7 @@
 
 ## 🗂️ Repository Structure
 
+```
 SPLIT-RAG/
 ├─ configs/
 │ ├─ metaqa.yaml
@@ -47,11 +48,13 @@ SPLIT-RAG/
 └─ README.md
 
 ---
+```
 
 ## 📚 Datasets & File Layout
 
 Expected files under `data/processed/`:
 
+```
 data/processed/
 ├─ kg.tsv # head<TAB>relation<TAB>tail
 ├─ entities.json # {entity_id: {"name": "...", ...}, ...}
@@ -62,7 +65,7 @@ data/processed/
 ├─ <dataset>_train.jsonl # question JSONL (format below)
 ├─ <dataset>_dev.jsonl
 └─ <dataset>_test.jsonl
-
+```
 
 **Question JSONL format** (one JSON per line):
 ```json
