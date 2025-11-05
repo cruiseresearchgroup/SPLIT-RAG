@@ -1,0 +1,21 @@
+# Global budgets & thresholds (edit per dataset via metaqa.yaml / webqsp.yaml / cwq.yaml)
+seed: 42
+
+paths:
+  max_hops: 2               # φ(p): at-most-2-hop fragments
+  topk_per_seed: 50         # cap candidate paths per seed entity (guardrail)
+  max_paths_per_question: 200
+
+partition:
+  lambda_size: 0.25         # IG = H(Ṕ | s) - λ * H_size(s)
+  theta_merge: 1e-4         # minimum ΔIG to merge two subgraphs
+  eta_max_nodes: 100000     # |V_s| ≤ η_max
+  tau_min_nodes: 200        # drop tiny residuals (< τ_min), merge to nearest
+
+io:
+  cache_dir: data/processed
+  kg_triple_tsv: data/processed/kg.tsv      # subject \t relation \t object
+  ent_map_json: data/processed/entities.json # {"id": {"name": ..., "type": ...}, ...}
+  rel_map_json: data/processed/relations.json
+  q_train_jsonl: data/processed/train_questions.jsonl # one per line
+  index_out_dir: data/processed/index/

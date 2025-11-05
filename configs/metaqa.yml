@@ -1,0 +1,59 @@
+seed: 42
+
+# ---- IO ----
+paths:
+  kg_tsv: data/processed/kg.tsv
+  ent_json: data/processed/entities.json
+  rel_json: data/processed/relations.json
+  train_q: data/processed/train_questions.jsonl
+  dev_q:   data/processed/dev_questions.jsonl
+  test_q:  data/processed/test_questions.jsonl
+  index_dir: data/processed/index/metaqa
+  registry_json: data/processed/registry/metaqa.json
+  runs_dir: data/processed/runs/metaqa
+
+# ---- Indexer (Sec. 3.1) ----
+indexer:
+  topk_per_seed: 50
+  max_paths_per_question: 200
+  lambda_size: 0.25
+  theta_merge: 1e-4
+  eta_max_nodes: 100000
+  tau_min_nodes: 200
+
+# ---- Matching (Sec. 3.2) ----
+matching:
+  N_max: 32
+  theta_coh: 0.35
+
+# ---- Planner (Sec. 3.3) ----
+planner:
+  similarity:
+    alpha: 0.7
+    beta: 0.3
+    k_sim: 10
+    theta_direct: 0.75
+  select:
+    B: 3
+    prefer_sim_transfer: true
+  path_seed:
+    theta_match: 0.5
+    max_atomic: 128
+
+# ---- Agents + Head (Sec. 3.4–3.5) ----
+subgraph_agent:
+  theta_match: 0.5
+  topk_per_seed: 5
+  evidence_cap_tokens: 2600
+  max_workers: 8
+
+head:
+  max_input_tokens: 2600
+  max_new_tokens: 256
+  temperature: 0.3
+  top_p: 0.95
+  stop: ["\n\n"]
+
+# ---- Eval ----
+eval:
+  normalize_answer: true
