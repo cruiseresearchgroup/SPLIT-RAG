@@ -95,6 +95,12 @@ python -m splitrag.cli.eval_all --cfg configs/metaqa.yaml --split test
 
 ```
 
+
+## 🔐 License
+
+This project is licensed under the terms of the MIT license.
+
+
 ## Citation
 
 ```bibtex
